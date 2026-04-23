@@ -1,0 +1,756 @@
+/* =============================================
+   CADASTRO DE PRODUTOS — TEMA PREMIUM SENAI
+   Azul Profundo (Navy) + Branco Puro Acabamento Alto Padrão
+   ============================================= */
+
+/* ===== THEME TOGGLE BUTTON ===== */
+#btnTheme {
+    -fx-background-color: #1F2937;
+    -fx-text-fill: #9CA3AF;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-size: 11px;
+    -fx-font-weight: 600;
+    -fx-padding: 6 18;
+    -fx-background-radius: 16;
+    -fx-border-radius: 16;
+    -fx-border-color: #374151;
+    -fx-border-width: 1;
+    -fx-cursor: hand;
+}
+#btnTheme:hover {
+    -fx-background-color: #374151;
+    -fx-text-fill: #F3F4F6;
+}
+
+/* ===== GEAR CONFIG BUTTON (Modern Transparent Icon) ===== */
+#btnConfig {
+    -fx-background-color: transparent;
+    -fx-text-fill: #94A3B8;
+    -fx-font-size: 18px;
+    -fx-padding: 4 8;
+    -fx-background-radius: 50;
+    -fx-border-radius: 50;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-cursor: hand;
+}
+#btnConfig .label {
+    -fx-text-fill: #94A3B8;
+    -fx-font-size: 18px;
+}
+#btnConfig:hover {
+    -fx-background-color: rgba(148,163,184,0.12);
+    -fx-text-fill: #CBD5E1;
+}
+#btnConfig:hover .label {
+    -fx-text-fill: #CBD5E1;
+}
+/* Collapse the native drop-arrow completely */
+#btnConfig .arrow-button {
+    -fx-pref-width: 0;
+    -fx-min-width: 0;
+    -fx-max-width: 0;
+    -fx-padding: 0;
+    -fx-pref-height: 0;
+    -fx-min-height: 0;
+    -fx-max-height: 0;
+}
+#btnConfig .arrow {
+    -fx-pref-width: 0;
+    -fx-min-width: 0;
+    -fx-max-width: 0;
+    -fx-pref-height: 0;
+    -fx-min-height: 0;
+    -fx-max-height: 0;
+    -fx-padding: 0;
+    -fx-shape: "";
+}
+
+/* ===== CONTEXT MENU ===== */
+.context-menu {
+    -fx-background-color: #1a2433;
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-border-color: #2d3f55;
+    -fx-border-width: 1;
+    -fx-padding: 6;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 20, 0, 0, 10);
+}
+.menu-item {
+    -fx-padding: 10 22 10 16;
+    -fx-background-radius: 8;
+}
+.menu-item > .label {
+    -fx-text-fill: #CBD5E1;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-size: 12px;
+    -fx-font-weight: 500;
+}
+.menu-item:hover, .menu-item:focused {
+    -fx-background-color: #2d3f55;
+    -fx-background-radius: 8;
+}
+.menu-item:hover > .label, .menu-item:focused > .label {
+    -fx-text-fill: #FFFFFF;
+}
+/* Danger (Sair) item styling */
+#menuItemSair {
+    -fx-background-radius: 8;
+}
+#menuItemSair > .label {
+    -fx-text-fill: #F87171;
+    -fx-font-weight: 700;
+}
+#menuItemSair:hover, #menuItemSair:focused {
+    -fx-background-color: rgba(239,68,68,0.15);
+}
+#menuItemSair:hover > .label, #menuItemSair:focused > .label {
+    -fx-text-fill: #FCA5A5;
+}
+.separator-menu-item {
+    -fx-padding: 4 0;
+}
+.separator-menu-item .line {
+    -fx-border-color: transparent transparent #2d3f55 transparent;
+    -fx-border-width: 1;
+}
+
+/* ===== ROOT & CORES ===== */
+.root {
+    -fx-font-family: "Segoe UI", "Inter", "Roboto", sans-serif;
+    -fx-font-size: 14px;
+    
+    /* Variáveis - O JavaFX CSS clássico não suporta vars perfeitamente no scene root, 
+       então aplicarei as cores diretamente, mas a paleta mental é:
+       Bg: #05070a a #0B101E (Deep Abyss)
+       Surface: rgba(255, 255, 255, 0.03) (Glass)
+       Accent: #2563EB (Electric Blue)
+       Text Primary: #FFFFFF
+       Text Sec: #94A3B8 (Slate)
+    */
+}
+
+/* ===== BACKGROUND PRINCIPAL ===== */
+#mainPane {
+    -fx-background-color: radial-gradient(center 50% 0%, radius 100%, #151e32, #05070a);
+}
+
+/* ===== HEADER ===== */
+#headerPane {
+    -fx-background-color: transparent;
+    -fx-padding: 20 40 6 40;
+}
+
+#lblLogo {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 34px;
+    -fx-font-weight: 900;
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.25), 15, 0.4, 0, 0);
+    -fx-letter-spacing: 2px; /* Emulação de espaçamento via fonte mais pesada se não suportado */
+}
+
+#lblTitulo {
+    -fx-text-fill: #E2E8F0;
+    -fx-font-size: 22px;
+    -fx-font-weight: 300;
+    -fx-padding: 0 0 4 0;
+}
+
+#lblSubtitulo {
+    -fx-text-fill: #94A3B8;
+    -fx-font-size: 14px;
+    -fx-font-weight: normal;
+}
+
+/* ==============================
+   12. ELEMENTOS "WOW" E NOVAS FEATURES
+   ============================== */
+
+/* Regras de estoque movidas para o final do arquivo para precedência */
+
+/* Filtro ComboBox Transparente */
+.filtro-combo {
+    -fx-background-color: rgba(255, 255, 255, 0.05);
+    -fx-border-color: rgba(255, 255, 255, 0.1);
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-text-fill: #FFFFFF;
+}
+
+.filtro-combo .list-cell {
+    -fx-text-fill: #FFFFFF;
+}
+
+.filtro-combo:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+}
+
+.filtro-combo:focused {
+    -fx-border-color: #3B82F6;
+}
+
+/* ===== CONTAINER CENTRAL ===== */
+#centerPane {
+    -fx-padding: 12 30 12 30;
+}
+
+/* ===== PAINÉIS / CARDS (GLASSMORPHISM) ===== */
+#formPane, #tabelaPane {
+    -fx-background-color: rgba(255, 255, 255, 0.02);
+    -fx-background-radius: 16;
+    -fx-border-color: rgba(255, 255, 255, 0.06);
+    -fx-border-width: 1;
+    -fx-border-radius: 16;
+    -fx-padding: 20;
+    /* Sombras compostas para profundidade realista */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 25, 0, 0, 10);
+}
+
+/* Simular reflexo superior do vidro (Inner Shadow trick no JavaFX não é nativo, fazemos com border) */
+#formPane {
+    -fx-border-color: rgba(255, 255, 255, 0.08) rgba(255, 255, 255, 0.02) rgba(255, 255, 255, 0.01) rgba(255, 255, 255, 0.02);
+}
+#tabelaPane {
+    -fx-border-color: rgba(255, 255, 255, 0.08) rgba(255, 255, 255, 0.02) rgba(255, 255, 255, 0.01) rgba(255, 255, 255, 0.02);
+}
+
+#formPane .label {
+    -fx-text-fill: #CBD5E1;
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+}
+
+/* ===== SECTION TITLES ===== */
+#lblFormTitle, #lblTableTitle {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-padding: 0 0 10 0;
+}
+
+/* ==================== USER BADGE HEADER ==================== */
+.nav-avatar-ring {
+    -fx-background-color: rgba(255, 255, 255, 0.05);
+    -fx-background-radius: 40;
+    -fx-border-color: rgba(255, 255, 255, 0.15);
+    -fx-border-radius: 40;
+    -fx-border-width: 2;
+}
+.nav-user-name {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FFFFFF;
+    -fx-padding: 6 0 0 0;
+}
+.nav-user-subtitle {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-size: 12px;
+    -fx-text-fill: #94A3B8;
+}
+.nav-avatar-svg {
+    -fx-fill: #64748B;
+}
+
+/* ===== INPUTS ===== */
+.text-field, .text-area, .combo-box {
+    -fx-background-color: rgba(0, 0, 0, 0.25);
+    -fx-border-color: rgba(255, 255, 255, 0.1);
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-text-fill: #F8FAFC;
+    -fx-prompt-text-fill: #64748B;
+    -fx-padding: 10 14;
+    -fx-font-size: 14px;
+}
+
+.text-field:focused, .text-area:focused, .combo-box:focused {
+    -fx-border-color: #3B82F6;
+    -fx-background-color: rgba(59, 130, 246, 0.08); /* Fundo com leve tom de azul quando focado */
+    -fx-effect: dropshadow(gaussian, rgba(59, 130, 246, 0.35), 9, 0, 0, 0); /* Glow azul */
+}
+
+/* Ajustes da TextArea */
+.text-area {
+    -fx-pref-row-count: 2;
+    -fx-min-height: 50px;
+}
+.text-area .content, .text-area .viewport, .text-area .scroll-pane, .text-area .scroll-pane .viewport, .text-area .scroll-pane .content {
+    -fx-background-color: transparent;
+}
+
+/* ===== COMBO BOX ===== */
+.combo-box .list-cell {
+    -fx-text-fill: #F8FAFC;
+    -fx-background-color: transparent;
+}
+.combo-box .arrow-button {
+    -fx-background-color: transparent;
+}
+.combo-box .arrow {
+    -fx-background-color: #94A3B8;
+}
+.combo-box-popup .list-view {
+    -fx-background-color: #0F172A;
+    -fx-border-color: rgba(59, 130, 246, 0.3);
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 20, 0, 0, 5);
+}
+.combo-box-popup .list-view .list-cell {
+    -fx-text-fill: #CBD5E1;
+    -fx-background-color: transparent;
+    -fx-padding: 10 14;
+}
+.combo-box-popup .list-view .list-cell:hover {
+    -fx-background-color: rgba(59, 130, 246, 0.15);
+    -fx-text-fill: white;
+}
+.combo-box-popup .list-view .list-cell:selected {
+    -fx-background-color: rgba(59, 130, 246, 0.3);
+    -fx-text-fill: white;
+}
+
+/* ===== BOTÕES ===== */
+.button {
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-padding: 11 24;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-text-fill: white;
+}
+
+/* Botão Salvar Principal — Azul Elétrico Premium */
+#btnSalvar {
+    -fx-background-color: linear-gradient(to right, #3B82F6, #2563EB);
+    -fx-effect: dropshadow(gaussian, rgba(37, 99, 235, 0.4), 12, 0, 0, 3);
+}
+
+#btnSalvar:hover {
+    -fx-background-color: linear-gradient(to right, #60A5FA, #3B82F6);
+    -fx-effect: dropshadow(gaussian, rgba(59, 130, 246, 0.6), 16, 0, 0, 4);
+}
+
+#btnSalvar:pressed {
+    -fx-background-color: linear-gradient(to right, #1D4ED8, #1E3A8A);
+    -fx-effect: dropshadow(gaussian, rgba(37, 99, 235, 0.2), 6, 0, 0, 1);
+}
+
+/* Botão Excluir Secundário — Outline Destructive */
+#btnExcluir {
+    -fx-background-color: rgba(239, 68, 68, 0.05); /* Fundo avermelhado super leve */
+    -fx-border-color: rgba(239, 68, 68, 0.3); /* Borda vermelha perceptível */
+    -fx-text-fill: #F87171; /* Texto vermelho suave */
+}
+
+#btnExcluir:hover {
+    -fx-background-color: rgba(239, 68, 68, 0.15); /* Mais fundo no hover */
+    -fx-border-color: rgba(239, 68, 68, 0.6); /* Borda fica mais forte */
+    -fx-text-fill: #FCA5A5;
+}
+
+#btnExcluir:pressed {
+    -fx-background-color: rgba(239, 68, 68, 0.25);
+}
+
+/* Botão Limpar Secundário — Transparente Edge */
+#btnLimpar {
+    -fx-background-color: transparent;
+    -fx-border-color: rgba(255, 255, 255, 0.1);
+    -fx-text-fill: #94A3B8;
+}
+
+#btnLimpar:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.05);
+    -fx-text-fill: #E2E8F0;
+    -fx-border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Botão Processar Estoque — Ação Útil (Violeta/Indigo Premium) */
+#btnProcessarEstoque {
+    -fx-background-color: rgba(139, 92, 246, 0.1);
+    -fx-border-color: rgba(139, 92, 246, 0.3);
+    -fx-text-fill: #C4B5FD;
+}
+
+#btnProcessarEstoque:hover {
+    -fx-background-color: rgba(139, 92, 246, 0.2);
+    -fx-border-color: rgba(139, 92, 246, 0.6);
+    -fx-text-fill: #DDD6FE;
+}
+
+#btnProcessarEstoque:pressed {
+    -fx-background-color: rgba(139, 92, 246, 0.3);
+}
+
+/* ===== UNIFIED SEARCH BAR (WOW DESIGN) ===== */
+#unifiedSearchPane {
+    -fx-background-color: linear-gradient(to right, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.8));
+    -fx-background-radius: 25;
+    -fx-border-color: rgba(255, 255, 255, 0.12);
+    -fx-border-radius: 25;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 10, 0, 0, 4);
+    -fx-padding: 2 6;
+}
+
+.search-combo, .search-combo:focused {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+}
+
+.search-combo .list-cell {
+    -fx-text-fill: #E2E8F0;
+    -fx-font-size: 13px;
+    -fx-padding: 6 10;
+}
+
+.search-separator {
+    -fx-background-color: rgba(255, 255, 255, 0.15);
+    -fx-min-width: 1px;
+    -fx-max-height: 22px;
+    -fx-margin: 0 8px;
+}
+
+.search-input {
+    -fx-font-family: "Segoe UI Emoji", "Segoe UI", sans-serif;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-text-fill: #F8FAFC;
+    -fx-prompt-text-fill: #64748B;
+    -fx-font-size: 14px;
+    -fx-padding: 10 12;
+}
+
+.search-input:focused {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-effect: null;
+}
+
+.table-view {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-focus-color: transparent; /* Combate azul forte de foco nativo (modena) */
+    -fx-faint-focus-color: transparent;
+    -fx-fixed-cell-size: 46px; /* Força o tamanho da linha para ficar WOW */
+}
+
+.table-view:focused .table-row-cell:focused,
+.table-view:focused .table-cell:focused {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+.table-view .filler, .table-view .column-header-background .filler {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: rgba(255, 255, 255, 0.03); /* Header bem suave */
+    -fx-background-radius: 8 8 0 0;
+    -fx-border-color: transparent transparent rgba(255, 255, 255, 0.05) transparent; /* Uma base para o header */
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: #94A3B8; /* Slate text for headers */
+    -fx-font-weight: 600;
+    -fx-font-size: 13px;
+    -fx-padding: 12 0;
+}
+
+.table-row-cell {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-cell-size: 46px; /* Sincronizado com light theme e fixed-cell-size */
+    -fx-table-cell-border-color: rgba(255, 255, 255, 0.05);
+}
+
+.table-row-cell:odd {
+    -fx-background-color: rgba(0, 0, 0, 0.1); /* Zebrado ultra sutil */
+}
+
+.table-row-cell:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.03); /* Hover sutil branco */
+}
+
+.table-row-cell:selected {
+    -fx-background-color: rgba(59, 130, 246, 0.15); /* Seleção com azul translúcido */
+    -fx-table-cell-border-color: rgba(255, 255, 255, 0.05);
+}
+
+.table-row-cell:selected:hover {
+    -fx-background-color: rgba(59, 130, 246, 0.2);
+    -fx-table-cell-border-color: rgba(255, 255, 255, 0.05);
+}
+
+.table-cell {
+    -fx-text-fill: #E2E8F0; /* Texto base brilhante */
+    -fx-padding: 0 10;
+    -fx-font-size: 14px;
+    -fx-alignment: center-left;
+}
+
+/* ==================== ALINHAMENTO DE COLUNAS (HEADER & CELL) ==================== */
+.col-left { -fx-alignment: center-left; }
+.col-center { -fx-alignment: center; }
+.col-right { -fx-alignment: center-right; }
+
+.col-left .label { -fx-alignment: center-left; }
+.col-center .label { -fx-alignment: center; }
+.col-right .label { -fx-alignment: center-right; }
+
+.table-row-cell:selected .table-cell {
+    -fx-text-fill: #FFFFFF;
+}
+
+/* Override Modena: A linha selecionada e suas variações focadas têm SEMPRE o azul translúcido bonito */
+.table-row-cell:selected,
+.table-row-cell:selected:focused,
+.table-view:focused .table-row-cell:selected,
+.table-view:focused .table-row-cell:filled:focused:selected {
+    -fx-background-color: rgba(59, 130, 246, 0.15); /* Seleção com azul translúcido */
+    -fx-background-insets: 0;
+    -fx-table-cell-border-color: rgba(255, 255, 255, 0.05);
+}
+
+.table-view .placeholder .label {
+    -fx-text-fill: #64748B;
+    -fx-font-size: 14px;
+}
+
+/* ===== SCROLL BARS (DARK E FINAS) ===== */
+.scroll-bar {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: rgba(255, 255, 255, 0.15);
+    -fx-background-radius: 6;
+}
+
+.scroll-bar .thumb:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.3);
+}
+
+.scroll-bar .increment-button, .scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+.scroll-bar .increment-arrow, .scroll-bar .decrement-arrow {
+    -fx-shape: " ";
+    -fx-padding: 0;
+}
+
+.scroll-bar .track {
+    -fx-background-color: transparent;
+}
+
+/* ===== STATUS BAR ===== */
+#statusBar {
+    -fx-background-color: rgba(0, 0, 0, 0.6); /* Barra inferior mais escura para aterrar o app */
+    -fx-padding: 8 30;
+    -fx-border-color: rgba(255, 255, 255, 0.03) transparent transparent transparent;
+}
+
+#lblStatus {
+    -fx-text-fill: #94A3B8;
+    -fx-font-size: 13px;
+}
+
+.status-sucesso #lblStatus, .status-sucesso { -fx-text-fill: #34D399 !important; }
+.status-erro { -fx-text-fill: #F87171 !important; }
+.status-aviso { -fx-text-fill: #FBBF24 !important; }
+.status-info { -fx-text-fill: #60A5FA !important; }
+
+#lblTotal {
+    -fx-text-fill: #FFFFFF; /* Branco no tema Dark */
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+/* ===== TOOLTIP ===== */
+.tooltip {
+    -fx-background-color: #0F172A;
+    -fx-text-fill: #F1F5F9;
+    -fx-border-color: rgba(255, 255, 255, 0.1);
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-font-size: 12px;
+    -fx-padding: 8 14;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0, 0, 3);
+}
+
+/* ===== TOGGLE THEME BUTTON ===== */
+.theme-toggle {
+    -fx-font-family: "Segoe UI Emoji", "Segoe UI", sans-serif;
+    -fx-background-color: rgba(255, 255, 255, 0.08);
+    -fx-border-color: rgba(255, 255, 255, 0.2);
+    -fx-border-radius: 20;
+    -fx-background-radius: 20;
+    -fx-text-fill: #F8FAFC;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-padding: 8 20;
+    -fx-cursor: hand;
+}
+
+.theme-toggle:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.12);
+}
+
+.theme-toggle:selected {
+    -fx-background-color: rgba(59, 130, 246, 0.2);
+    -fx-border-color: rgba(59, 130, 246, 0.4);
+    -fx-text-fill: #93C5FD;
+}
+
+/* ========================================================
+   13. OVERRIDES FINAIS - ALERTA ESTOQUE BAIXO
+   ======================================================== */
+/* Precisa estar no final para sobrepor efeitos de :odd, :hover, etc. */
+
+.table-row-cell.linha-estoque-baixo,
+.table-row-cell.linha-estoque-baixo:odd {
+    -fx-background-color: rgba(239, 68, 68, 0.15); /* Vermelho muito suave translúcido */
+}
+
+.table-row-cell.linha-estoque-baixo:hover,
+.table-row-cell.linha-estoque-baixo:odd:hover {
+    -fx-background-color: rgba(248, 113, 113, 0.18); /* Fundo avermelhado interativo */
+}
+
+.table-view .table-row-cell.linha-estoque-baixo:selected,
+.table-view .table-row-cell.linha-estoque-baixo:odd:selected,
+.table-view .table-row-cell.linha-estoque-baixo:selected:focused,
+.table-view:focused .table-row-cell.linha-estoque-baixo:selected,
+.table-view:focused .table-row-cell.linha-estoque-baixo:filled:focused:selected {
+    -fx-background-color: rgba(248, 113, 113, 0.25);
+    -fx-background-insets: 0;
+    -fx-table-cell-border-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Mudar a cor do texto para vermelho suave se estoque baixo */
+.table-row-cell.linha-estoque-baixo .table-cell {
+    -fx-text-fill: #F87171; /* Vermelho Suave */
+}
+
+/* ========================================================
+   14. BOTÃO HISTÓRICO
+   ======================================================== */
+#btnHistorico {
+    -fx-background-color: transparent;
+    -fx-text-fill: #94A3B8;
+    -fx-font-size: 15px;
+    -fx-padding: 2 6;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}
+#btnHistorico:hover {
+    -fx-background-color: rgba(148, 163, 184, 0.15);
+    -fx-text-fill: #E2E8F0;
+}
+
+/* ========================================================
+   15. MODAL HISTÓRICO — DARK PREMIUM
+   ======================================================== */
+
+/* ===== Root: Fundo gradiente da janela ===== */
+#historicoRoot {
+    -fx-background-color: linear-gradient(to bottom right, #0F172A, #1E293B);
+    -fx-padding: 0;
+}
+
+/* ===== Card principal com glassmorphism ===== */
+#historicoCard {
+    -fx-background-color: rgba(255, 255, 255, 0.03);
+    -fx-background-radius: 16;
+    -fx-border-color: rgba(255, 255, 255, 0.06);
+    -fx-border-width: 1;
+    -fx-border-radius: 16;
+    -fx-padding: 24;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 20, 0, 0, 8);
+}
+
+/* ===== Título ===== */
+#historicoTitle {
+    -fx-text-fill: #F1F5F9;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+/* ===== Barra de Pesquisa (Pill) ===== */
+#historicoSearchPane {
+    -fx-background-color: rgba(30, 41, 59, 0.9);
+    -fx-background-radius: 25;
+    -fx-border-color: rgba(255, 255, 255, 0.1);
+    -fx-border-radius: 25;
+    -fx-padding: 2 6;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 8, 0, 0, 3);
+}
+
+.hist-combo, .hist-combo:focused {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+}
+.hist-combo .list-cell {
+    -fx-text-fill: #E2E8F0;
+    -fx-font-size: 13px;
+    -fx-padding: 6 10;
+}
+.hist-separator {
+    -fx-background-color: rgba(255, 255, 255, 0.12);
+    -fx-min-width: 1px;
+    -fx-pref-width: 1px;
+    -fx-max-height: 22px;
+}
+.hist-input {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-text-fill: #F8FAFC;
+    -fx-prompt-text-fill: #64748B;
+    -fx-font-size: 13px;
+    -fx-padding: 8 12;
+    -fx-font-family: "Segoe UI Emoji", "Segoe UI", sans-serif;
+}
+.hist-input:focused {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-effect: null;
+}
+
+/* ===== Botão Atualizar (Círculo minimalista) ===== */
+#historicoRefreshBtn {
+    -fx-background-color: rgba(255, 255, 255, 0.06);
+    -fx-text-fill: #94A3B8;
+    -fx-font-size: 16px;
+    -fx-padding: 8 12;
+    -fx-background-radius: 12;
+    -fx-border-color: rgba(255, 255, 255, 0.08);
+    -fx-border-radius: 12;
+    -fx-cursor: hand;
+}
+#historicoRefreshBtn:hover {
+    -fx-background-color: rgba(59, 130, 246, 0.15);
+    -fx-text-fill: #60A5FA;
+    -fx-border-color: rgba(59, 130, 246, 0.3);
+}
+
+/* ===== Rodapé ===== */
+#historicoFooter {
+    -fx-text-fill: #64748B;
+    -fx-font-size: 12px;
+}
+

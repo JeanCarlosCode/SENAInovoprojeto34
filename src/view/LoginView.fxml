@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.geometry.Insets?>
+
+<HBox id="loginRoot" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="controller.LoginController" prefWidth="1100" prefHeight="650">
+
+    <!-- ============================== -->
+    <!-- LADO ESQUERDO: BRANDING        -->
+    <!-- ============================== -->
+    <StackPane id="abstractPanel" HBox.hgrow="ALWAYS" minWidth="500">
+        <VBox alignment="BOTTOM_LEFT" spacing="6" style="-fx-padding: 0 0 60 60;">
+            <!-- Destaque superior -->
+            <Region prefHeight="200" />
+            <HBox spacing="10" alignment="CENTER_LEFT" style="-fx-padding: 0 0 30 0;">
+                <Region id="accentDot1" styleClass="accent-dot" />
+                <Region id="accentDot2" styleClass="accent-dot" />
+                <Region id="accentDot3" styleClass="accent-dot" />
+            </HBox>
+            <Label id="panelTitle" text="Controle&#10;total do seu&#10;estoque." wrapText="true" />
+            <Label id="panelSub" text="Plataforma moderna de gest&#xE3;o SENAI." style="-fx-padding: 8 0 0 0;" />
+        </VBox>
+    </StackPane>
+
+    <!-- ============================== -->
+    <!-- LADO DIREITO: FORMULÁRIO       -->
+    <!-- ============================== -->
+    <BorderPane prefWidth="480" minWidth="480" HBox.hgrow="NEVER" id="formContainer">
+        
+        <!-- Botão de Tema no canto SUPERIOR DIREITO -->
+        <!-- Botões de Navegação e Tema -->
+        <top>
+            <BorderPane style="-fx-padding: 30 40 0 40;">
+                <left>
+                    <Button fx:id="btnVoltar" text="&#x2190; Voltar" onAction="#toggleCadastro" styleClass="theme-btn" visible="false" managed="false" BorderPane.alignment="CENTER" />
+                </left>
+                <right>
+                    <Button fx:id="btnTheme" text="Light" onAction="#alternarTema" styleClass="theme-btn" BorderPane.alignment="CENTER" />
+                </right>
+            </BorderPane>
+        </top>
+
+        <center>
+            <VBox alignment="CENTER" spacing="0">
+                <!-- Header do Form -->
+                <VBox alignment="CENTER" spacing="8" style="-fx-padding: 0 0 15 0;">
+                    <!-- Container Principal do Avatar -->
+                    <StackPane fx:id="avatarContainer" id="avatarRing" maxWidth="84" maxHeight="84" minWidth="84" minHeight="84" onMouseClicked="#selecionarFoto" style="-fx-cursor: hand;">
+                        <SVGPath fx:id="svgAvatarIcon" id="avatarIcon" content="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" scaleX="3" scaleY="3" />
+                        <Circle fx:id="clipCircle" radius="41" visible="false" managed="false" />
+                        <!-- Loading Spinner Overlay -->
+                        <ProgressIndicator fx:id="loadingSpinner" visible="false" managed="false" maxWidth="40" maxHeight="40" />
+                    </StackPane>
+                    <Label fx:id="lblFotoHint" id="lblFotoHint" text="Adicionar foto" visible="false" managed="false" />
+                    
+                    <Label fx:id="lblLoginTitle" id="lblTitle" text="Acessar Sistema" style="-fx-padding: 6 0 0 0;" />
+                    <Label fx:id="lblLoginSub" id="lblSubtitle" text="Insira suas credenciais" />
+                </VBox>
+
+                <!-- Mensagens -->
+                <Label fx:id="lblMensagemErro" id="lblError" text="" visible="false" managed="false" style="-fx-padding: 0 0 12 0;" />
+                <Label fx:id="lblMensagemSucesso" id="lblSuccess" text="" visible="false" managed="false" style="-fx-padding: 0 0 12 0;" />
+
+                <!-- Formulário -->
+                <VBox fx:id="formInputsBox" spacing="10" maxWidth="320" style="-fx-padding: 0 0 0 0;">
+                    <VBox fx:id="boxNome" spacing="4" visible="false" managed="false">
+                        <Label text="Nome completo" styleClass="field-label" />
+                        <TextField fx:id="txtNome" promptText="Ex: Maria Antonieta" styleClass="modern-input" />
+                    </VBox>
+                    
+                    <VBox spacing="4">
+                        <Label text="Usuário" styleClass="field-label" />
+                        <TextField fx:id="txtUsername" promptText="maria.antonieta" styleClass="modern-input" />
+                    </VBox>
+                    
+                    <VBox spacing="4">
+                        <Label text="Senha" styleClass="field-label" />
+                        <PasswordField fx:id="txtSenha" promptText="••••••••••" styleClass="modern-input" onAction="#tentarLogar" />
+                    </VBox>
+                    
+                    <VBox fx:id="boxConfirmarSenha" spacing="4" visible="false" managed="false">
+                        <Label text="Confirmar senha" styleClass="field-label" />
+                        <PasswordField fx:id="txtConfirmarSenha" promptText="••••••••••" styleClass="modern-input" />
+                    </VBox>
+
+                    <Region prefHeight="6" />
+                    
+                    <Button fx:id="btnAcessar" id="btnPrimary" text="Entrar" onAction="#tentarLogar" maxWidth="Infinity" />
+                    
+                    <HBox alignment="CENTER" spacing="5" style="-fx-padding: 8 0 0 0;">
+                        <Label fx:id="lblDuvida" text="Novo por aqui?" styleClass="text-muted" />
+                        <Hyperlink fx:id="linkCadastro" text="Criar conta" onAction="#toggleCadastro" styleClass="link-modern" />
+                    </HBox>
+                </VBox>
+            </VBox>
+        </center>
+        
+
+    </BorderPane>
+
+</HBox>

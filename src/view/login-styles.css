@@ -1,0 +1,195 @@
+/* =============================================
+   DARK THEME — POLISHED & MODERN
+   ============================================= */
+
+#loginRoot {
+    -fx-background-color: #0b1120;
+}
+
+/* ===== PAINEL ESQUERDO ===== */
+#abstractPanel {
+    -fx-background-color: linear-gradient(to bottom right, #0f1d36, #0b1120),
+                          radial-gradient(center 20% 30%, radius 60%, rgba(59, 130, 246, 0.15), transparent),
+                          radial-gradient(center 80% 80%, radius 50%, rgba(139, 92, 246, 0.12), transparent);
+    -fx-border-width: 0 1 0 0;
+    -fx-border-color: rgba(255, 255, 255, 0.04);
+}
+
+#panelTitle {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-size: 44px;
+    -fx-font-weight: 900;
+    -fx-text-fill: #FFFFFF;
+    -fx-line-spacing: -4px;
+}
+
+#panelSub {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-size: 14px;
+    -fx-font-weight: 400;
+    -fx-text-fill: rgba(255, 255, 255, 0.35);
+}
+
+.accent-dot {
+    -fx-min-width: 10px;
+    -fx-min-height: 10px;
+    -fx-max-width: 10px;
+    -fx-max-height: 10px;
+    -fx-background-radius: 5px;
+}
+#accentDot1 { -fx-background-color: #3B82F6; }
+#accentDot2 { -fx-background-color: #8B5CF6; }
+#accentDot3 { -fx-background-color: #10B981; }
+
+/* ===== PAINEL DIREITO ===== */
+#formContainer {
+    -fx-background-color: #111827;
+}
+
+/* TEMA TOGGLE */
+.theme-btn {
+    -fx-background-color: #1F2937;
+    -fx-text-fill: #9CA3AF;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-size: 11px;
+    -fx-font-weight: 600;
+    -fx-padding: 6 18;
+    -fx-background-radius: 16;
+    -fx-border-radius: 16;
+    -fx-border-color: #374151;
+    -fx-border-width: 1;
+    -fx-cursor: hand;
+}
+.theme-btn:hover {
+    -fx-background-color: #374151;
+    -fx-text-fill: #F3F4F6;
+}
+
+/* AVATAR */
+#avatarRing {
+    -fx-background-color: #1F2937;
+    -fx-background-radius: 100;
+    -fx-border-width: 2.5;
+    -fx-border-color: #374151;
+    -fx-border-radius: 100;
+    -fx-alignment: center;
+}
+#avatarRing:hover {
+    -fx-border-color: #60A5FA;
+    -fx-background-color: #1a2640;
+}
+#avatarIcon {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-fill: #CBD5E1;
+    -fx-font-size: 30px;
+    -fx-font-weight: 300;
+}
+#lblFotoHint {
+    -fx-text-fill: #60A5FA;
+    -fx-font-size: 11px;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-alignment: center;
+}
+
+/* TEXTOS HEADER */
+#lblTitle {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-text-fill: #F9FAFB;
+    -fx-font-size: 24px;
+    -fx-font-weight: 700;
+}
+#lblSubtitle {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-text-fill: #6B7280;
+    -fx-font-size: 13px;
+}
+
+/* CAMPOS */
+.field-label {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-text-fill: #6B7280;
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+}
+
+.modern-input {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-size: 14px;
+    -fx-background-color: #1F2937;
+    -fx-text-fill: #F3F4F6;
+    -fx-prompt-text-fill: #4B5563;
+    -fx-border-color: #374151;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 11 14;
+}
+.modern-input:focused {
+    -fx-border-color: #3B82F6;
+    -fx-background-color: #1a2640;
+    -fx-effect: dropshadow(gaussian, rgba(59, 130, 246, 0.15), 8, 0, 0, 0);
+}
+
+/* BOTÃO PRINCIPAL */
+#btnPrimary {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-background-color: #3B82F6;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 14px;
+    -fx-font-weight: 700;
+    -fx-padding: 13 0;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(59, 130, 246, 0.35), 12, 0, 0, 3);
+}
+#btnPrimary:hover {
+    -fx-background-color: #2563EB;
+    -fx-effect: dropshadow(gaussian, rgba(59, 130, 246, 0.5), 16, 0, 0, 4);
+}
+#btnPrimary:pressed {
+    -fx-background-color: #1D4ED8;
+    -fx-effect: dropshadow(gaussian, rgba(59, 130, 246, 0.2), 6, 0, 0, 1);
+}
+
+/* LINKS E TEXTOS */
+.text-muted {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-text-fill: #6B7280;
+    -fx-font-size: 12px;
+}
+.link-modern {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-text-fill: #60A5FA;
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+    -fx-border-color: transparent;
+}
+.link-modern:hover {
+    -fx-text-fill: #93C5FD;
+}
+#footerText {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-text-fill: #374151;
+    -fx-font-size: 11px;
+    -fx-alignment: center;
+}
+
+/* MSG ERRO E SUCESSO */
+#lblError {
+    -fx-text-fill: #FCA5A5;
+    -fx-background-color: rgba(239, 68, 68, 0.08);
+    -fx-padding: 8 16;
+    -fx-background-radius: 6;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-size: 12px;
+    -fx-alignment: center;
+}
+#lblSuccess {
+    -fx-text-fill: #6EE7B7;
+    -fx-background-color: rgba(16, 185, 129, 0.08);
+    -fx-padding: 8 16;
+    -fx-background-radius: 6;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-size: 12px;
+    -fx-alignment: center;
+}

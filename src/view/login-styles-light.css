@@ -1,0 +1,194 @@
+/* =============================================
+   LIGHT THEME — POLISHED & MODERN
+   ============================================= */
+
+#loginRoot {
+    -fx-background-color: #F8FAFC;
+}
+
+/* ===== PAINEL ESQUERDO ===== */
+#abstractPanel {
+    -fx-background-color: linear-gradient(to bottom right, #E0E7FF, #F8FAFC),
+                          radial-gradient(center 20% 30%, radius 60%, rgba(59, 130, 246, 0.1), transparent),
+                          radial-gradient(center 80% 80%, radius 50%, rgba(139, 92, 246, 0.08), transparent);
+    -fx-border-width: 0 1 0 0;
+    -fx-border-color: rgba(0, 0, 0, 0.05);
+}
+
+#panelTitle {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-size: 44px;
+    -fx-font-weight: 900;
+    -fx-text-fill: #0F172A;
+    -fx-line-spacing: -4px;
+}
+
+#panelSub {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-size: 14px;
+    -fx-font-weight: 400;
+    -fx-text-fill: #64748B;
+}
+
+.accent-dot {
+    -fx-min-width: 10px;
+    -fx-min-height: 10px;
+    -fx-max-width: 10px;
+    -fx-max-height: 10px;
+    -fx-background-radius: 5px;
+}
+#accentDot1 { -fx-background-color: #3B82F6; }
+#accentDot2 { -fx-background-color: #8B5CF6; }
+#accentDot3 { -fx-background-color: #10B981; }
+
+/* ===== PAINEL DIREITO ===== */
+#formContainer {
+    -fx-background-color: #FFFFFF;
+}
+
+/* TEMA TOGGLE */
+.theme-btn {
+    -fx-background-color: #F1F5F9;
+    -fx-text-fill: #64748B;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-size: 11px;
+    -fx-font-weight: 600;
+    -fx-padding: 6 18;
+    -fx-background-radius: 16;
+    -fx-border-radius: 16;
+    -fx-border-color: #E2E8F0;
+    -fx-border-width: 1;
+    -fx-cursor: hand;
+}
+.theme-btn:hover {
+    -fx-background-color: #E2E8F0;
+    -fx-text-fill: #0F172A;
+}
+
+/* AVATAR */
+#avatarRing {
+    -fx-background-color: #F1F5F9;
+    -fx-background-radius: 100;
+    -fx-border-width: 2.5;
+    -fx-border-color: #E2E8F0;
+    -fx-border-radius: 100;
+    -fx-alignment: center;
+}
+#avatarRing:hover {
+    -fx-border-color: #3B82F6;
+    -fx-background-color: #EFF6FF;
+}
+#avatarIcon {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-fill: #CBD5E1;
+    -fx-font-size: 30px;
+    -fx-font-weight: 300;
+}
+#lblFotoHint {
+    -fx-text-fill: #3B82F6;
+    -fx-font-size: 11px;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-alignment: center;
+}
+
+/* TEXTOS HEADER */
+#lblTitle {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-text-fill: #0F172A;
+    -fx-font-size: 24px;
+    -fx-font-weight: 700;
+}
+#lblSubtitle {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-text-fill: #64748B;
+    -fx-font-size: 13px;
+}
+
+/* CAMPOS */
+.field-label {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-text-fill: #64748B;
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+}
+
+.modern-input {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-size: 14px;
+    -fx-background-color: #F8FAFC;
+    -fx-text-fill: #0F172A;
+    -fx-prompt-text-fill: #94A3B8;
+    -fx-border-color: #E2E8F0;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 11 14;
+}
+.modern-input:focused {
+    -fx-border-color: #3B82F6;
+    -fx-background-color: #FFFFFF;
+    -fx-effect: dropshadow(gaussian, rgba(59, 130, 246, 0.1), 8, 0, 0, 0);
+}
+
+/* BOTÃO PRINCIPAL */
+#btnPrimary {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-background-color: #0F172A;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 14px;
+    -fx-font-weight: 700;
+    -fx-padding: 13 0;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(15, 23, 42, 0.25), 12, 0, 0, 3);
+}
+#btnPrimary:hover {
+    -fx-background-color: #1E293B;
+    -fx-effect: dropshadow(gaussian, rgba(15, 23, 42, 0.4), 16, 0, 0, 4);
+}
+#btnPrimary:pressed {
+    -fx-background-color: #334155;
+}
+
+/* LINKS E TEXTOS */
+.text-muted {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-text-fill: #64748B;
+    -fx-font-size: 12px;
+}
+.link-modern {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-text-fill: #3B82F6;
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+    -fx-border-color: transparent;
+}
+.link-modern:hover {
+    -fx-text-fill: #2563EB;
+}
+#footerText {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-text-fill: #94A3B8;
+    -fx-font-size: 11px;
+    -fx-alignment: center;
+}
+
+/* MSG ERRO E SUCESSO */
+#lblError {
+    -fx-text-fill: #DC2626;
+    -fx-background-color: rgba(220, 38, 38, 0.06);
+    -fx-padding: 8 16;
+    -fx-background-radius: 6;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-size: 12px;
+    -fx-alignment: center;
+}
+#lblSuccess {
+    -fx-text-fill: #059669;
+    -fx-background-color: rgba(5, 150, 105, 0.06);
+    -fx-padding: 8 16;
+    -fx-background-radius: 6;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-size: 12px;
+    -fx-alignment: center;
+}

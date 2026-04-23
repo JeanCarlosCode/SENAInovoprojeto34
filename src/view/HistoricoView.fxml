@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox id="historicoRoot" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="controller.HistoricoController"
+      spacing="0" alignment="TOP_CENTER">
+
+    <!-- Card Principal -->
+    <VBox id="historicoCard" VBox.vgrow="ALWAYS" spacing="16">
+
+        <!-- Header: Titulo + Busca + Atualizar -->
+        <HBox alignment="CENTER_LEFT" spacing="16">
+            <Label id="historicoTitle" text="Histórico de Atividades" />
+            <Region HBox.hgrow="ALWAYS" />
+            <HBox id="historicoSearchPane" alignment="CENTER_LEFT" spacing="0">
+                <ComboBox fx:id="cmbFiltroAcao" promptText="Todas" prefWidth="150" styleClass="hist-combo" />
+                <Region styleClass="hist-separator" />
+                <TextField fx:id="txtBuscaProduto" promptText="&#x1F50D; Buscar produto..." HBox.hgrow="ALWAYS" styleClass="hist-input" />
+            </HBox>
+            <Button id="historicoRefreshBtn" text="&#x21BB;" onAction="#atualizar" />
+        </HBox>
+
+        <!-- Tabela -->
+        <TableView fx:id="tabelaHistorico" VBox.vgrow="ALWAYS">
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+            </columnResizePolicy>
+            <placeholder>
+                <Label text="Nenhum registro encontrado." style="-fx-opacity: 0.5;" />
+            </placeholder>
+            <columns>
+                <TableColumn fx:id="colDataHora"  text="Data/Hora"  prefWidth="150" minWidth="130" />
+                <TableColumn fx:id="colAcao"      text="Ação"       prefWidth="130" minWidth="100" />
+                <TableColumn fx:id="colProduto"   text="Produto"    prefWidth="180" minWidth="130" />
+                <TableColumn fx:id="colUsuario"   text="Usuário"    prefWidth="120" minWidth="80"  />
+                <TableColumn fx:id="colDetalhes"  text="Detalhes"   prefWidth="280" minWidth="180" />
+            </columns>
+        </TableView>
+
+        <!-- Rodapé -->
+        <HBox alignment="CENTER_RIGHT">
+            <Label fx:id="lblTotalRegistros" text="Registros: 0" id="historicoFooter" />
+        </HBox>
+    </VBox>
+</VBox>
