@@ -65,6 +65,8 @@ public class VendasController {
     private ObservableList<ItemVenda> itensCarrinho = FXCollections.observableArrayList();
     private List<Cliente> clientesAtivos;
     
+    private ContextMenu popupBusca;
+    
     private double subtotalGeral = 0.0;
     private double totalComDesconto = 0.0;
     private double descontoManual = 0.0;
@@ -115,6 +117,34 @@ public class VendasController {
 
         // Enter no campo de busca chama adicionarProduto
         txtBuscaProduto.setOnAction(e -> adicionarProdutoCarrinho());
+        
+        // Autocomplete/Live Search
+        popupBusca = new ContextMenu();
+        popupBusca.setMaxHeight(200);
+        txtBuscaProduto.textProperty().addListener((obs, oldText, newText) -> {
+            if (newText == null || newText.trim().length() < 2) {
+                popupBusca.hide();
+                return;
+            }
+            List<Produto> enc = produtoDAO.buscarPorNome(newText.trim());
+            popupBusca.getItems().clear();
+            for (Produto p : enc) {
+                MenuItem item = new MenuItem(p.getCodigoBarras() + " - " + p.getNome() + " (R$ " + String.format("%.2f", p.getPrecoVenda()) + ") - Est: " + p.getQuantidade());
+                item.setOnAction(ev -> {
+                    txtBuscaProduto.setText(p.getCodigoBarras());
+                    adicionarProdutoCarrinho();
+                });
+                popupBusca.getItems().add(item);
+            }
+            
+            if (!popupBusca.getItems().isEmpty()) {
+                if (!popupBusca.isShowing()) {
+                    popupBusca.show(txtBuscaProduto, javafx.geometry.Side.BOTTOM, 0, 0);
+                }
+            } else {
+                popupBusca.hide();
+            }
+        });
         
         // Desconto mudou
         txtDesconto.textProperty().addListener((o, oldV, newV) -> calcularTotalETroco());
@@ -206,6 +236,9 @@ public class VendasController {
             txtBuscaProduto.clear();
             txtQuantidadeBase.setText("1");
             txtBuscaProduto.requestFocus();
+            if (popupBusca != null && popupBusca.isShowing()) {
+                popupBusca.hide();
+            }
             calcularTotalETroco();
         } else {
             mostrarAviso("Não Encontrado", "Produto não encontrado.");
