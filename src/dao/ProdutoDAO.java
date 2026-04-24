@@ -118,16 +118,17 @@ public class ProdutoDAO {
         }
     }
 
-    // ==================== BUSCAR POR NOME ====================
-    public List<Produto> buscarPorNome(String nome) {
+    // ==================== BUSCAR POR NOME OU COD BARRA ====================
+    public List<Produto> buscarPorNome(String nomeOuBarra) {
         List<Produto> produtos = new ArrayList<>();
-        String sql = "SELECT * FROM produtos WHERE nome LIKE ? ORDER BY id DESC";
+        String sql = "SELECT * FROM produtos WHERE nome LIKE ? OR codigo_barras = ? ORDER BY id DESC";
         Connection conn = ConexaoDB.getConexao();
 
         if (conn == null) return produtos;
 
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, "%" + nome + "%");
+            stmt.setString(1, "%" + nomeOuBarra + "%");
+            stmt.setString(2, nomeOuBarra);
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
