@@ -754,3 +754,17 @@
     -fx-font-size: 12px;
 }
 
+/* ===== FUNDOS DO HISTORICO (Root e Card) ===== */
+#historicoRoot {
+    -fx-background-color: #0B1120;
+    -fx-padding: 24;
+}
+
+#historicoCard {
+    -fx-background-color: #1a2433;
+    -fx-background-radius: 16;
+    -fx-padding: 24;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 20, 0, 0, 10);
+}
+
+
