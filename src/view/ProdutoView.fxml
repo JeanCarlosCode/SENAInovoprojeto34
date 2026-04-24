@@ -94,11 +94,11 @@
 
                 <HBox spacing="10">
                     <VBox spacing="4" HBox.hgrow="ALWAYS">
-                        <Label text="Estoque Mínimo *" />
+                        <Label text="Alerta: Estoque Min. *" />
                         <TextField fx:id="txtEstoqueMinimo" promptText="5" text="5" />
                     </VBox>
                     <VBox spacing="4" HBox.hgrow="ALWAYS">
-                        <Label text="Estoque (Automático)" />
+                        <Label text="Qtd. Inicial (Bloqueado)" />
                         <TextField fx:id="txtQuantidade" promptText="0" text="0" disable="true" />
                     </VBox>
                 </HBox>

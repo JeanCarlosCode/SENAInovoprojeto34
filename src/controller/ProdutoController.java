@@ -171,8 +171,21 @@ public class ProdutoController implements Initializable {
         );
 
         // Listeners para Precificação Automática
-        txtPrecoCusto.textProperty().addListener((obs, oldVal, newVal) -> calcularPrecificacaoAutomatica());
-        txtMargemLucro.textProperty().addListener((obs, oldVal, newVal) -> calcularPrecificacaoAutomatica());
+        txtPrecoCusto.textProperty().addListener((obs, oldVal, newVal) -> {
+            if (txtPrecoCusto.isFocused()) {
+                if (!txtMargemLucro.getText().trim().isEmpty()) {
+                    calcularPrecificacaoAutomatica();
+                } else if (!txtPrecoVenda.getText().trim().isEmpty()) {
+                    calcularMargemInversa();
+                }
+            }
+        });
+        txtMargemLucro.textProperty().addListener((obs, oldVal, newVal) -> {
+            if (txtMargemLucro.isFocused()) calcularPrecificacaoAutomatica();
+        });
+        txtPrecoVenda.textProperty().addListener((obs, oldVal, newVal) -> {
+            if (txtPrecoVenda.isFocused()) calcularMargemInversa();
+        });
 
         // Listener para Pequisa Automática (Live Search)
         txtBusca.textProperty().addListener((obs, oldText, newText) -> {
@@ -702,6 +715,22 @@ public class ProdutoController implements Initializable {
             double margem = Double.parseDouble(txtMargemLucro.getText().trim().replace("%", "").replace(",", "."));
             double venda = custo + (custo * (margem / 100));
             txtPrecoVenda.setText(String.format(java.util.Locale.US, "%.2f", venda));
+        } catch (NumberFormatException e) {
+            // Ignorar erro de digitação interativa
+        }
+    }
+
+    private void calcularMargemInversa() {
+        try {
+            if (txtPrecoCusto.getText().trim().isEmpty() || txtPrecoVenda.getText().trim().isEmpty()) {
+                return;
+            }
+            double custo = Double.parseDouble(txtPrecoCusto.getText().trim().replace(",", "."));
+            double venda = Double.parseDouble(txtPrecoVenda.getText().trim().replace(",", "."));
+            if (custo > 0) {
+                double margem = ((venda - custo) / custo) * 100;
+                txtMargemLucro.setText(String.format(java.util.Locale.US, "%.1f", margem));
+            }
         } catch (NumberFormatException e) {
             // Ignorar erro de digitação interativa
         }
