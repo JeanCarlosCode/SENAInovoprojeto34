@@ -380,17 +380,41 @@ public class ProdutoController implements Initializable {
             stage.setScene(scene);
         } catch (IOException e) {
             e.printStackTrace();
-            mostrarAlertaErro("Falha ao abrir a tela de Clientes.");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Erro");
+            alert.setContentText("Falha ao abrir a tela.");
+            alert.show();
         }
     }
 
     @FXML
     private void abrirVendas() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Aviso");
-        alert.setHeaderText(null);
-        alert.setContentText("Módulo de Vendas será implementado em breve.");
-        alert.showAndWait();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/VendasView.fxml"));
+            Parent root = loader.load();
+
+            // Tenta passar o estado
+            Object controller = loader.getController();
+            if (controller instanceof controller.VendasController) {
+                ((controller.VendasController) controller).setUserData(lblUserName.getText(), isDarkMode);
+            }
+
+            Stage stage = (Stage) btnTheme.getScene().getWindow();
+            Scene scene = new Scene(root, stage.getScene().getWidth(), stage.getScene().getHeight());
+            if (isDarkMode) {
+                scene.getStylesheets().add(getClass().getResource("/view/styles.css").toExternalForm());
+            } else {
+                scene.getStylesheets().add(getClass().getResource("/view/styles-light.css").toExternalForm());
+            }
+            stage.setTitle("EletroTech - Frente de Caixa / PDV");
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Erro");
+            alert.setContentText("Falha ao abrir a tela.");
+            alert.show();
+        }
     }
 
 

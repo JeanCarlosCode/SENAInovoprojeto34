@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
+import dao.VendaDAO;
 
 public class ClienteController {
 
@@ -129,11 +130,19 @@ public class ClienteController {
         txtTelefone.setText(c.getTelefone());
         cmbStatus.getSelectionModel().select(c.isAtivo() ? "Ativo" : "Inativo");
         
-        // Stub para Últimas 5 Compras
-        // Simulando que vamos implementar via VendaDAO futuramente
-        listCompras.setItems(FXCollections.observableArrayList(
-            "(Vendas ainda não implementadas)"
-        ));
+        // Puxar Últimas 5 Compras do Cliente
+        VendaDAO vDao = new VendaDAO();
+        List<model.Venda> ultimas = vDao.buscarUltimasDoCliente(c.getId());
+        
+        ObservableList<String> historicoInfo = FXCollections.observableArrayList();
+        if (ultimas.isEmpty()) {
+            historicoInfo.add("Nenhuma compra registrada.");
+        } else {
+            for (model.Venda v : ultimas) {
+                historicoInfo.add(v.getDataHora() + " - R$ " + String.format("%.2f", v.getTotalPago()) + " (" + v.getFormaPagamento() + ")");
+            }
+        }
+        listCompras.setItems(historicoInfo);
     }
 
     @FXML
@@ -264,8 +273,7 @@ public class ClienteController {
 
     @FXML
     private void abrirVendas() {
-        mostrarAlerta("Aviso", "Módulo de Vendas será implementado em breve.", Alert.AlertType.INFORMATION);
-        // abrirTela("/view/VendasView.fxml", "PDV / Frente de Caixa");
+        abrirTela("/view/VendasView.fxml", "Frente de Caixa / PDV");
     }
 
     @FXML

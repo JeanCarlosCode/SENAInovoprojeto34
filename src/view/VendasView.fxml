@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+
+<BorderPane id="mainPane" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.VendasController">
+
+    <!-- HEADER PREMIUM SENAI -->
+    <top>
+        <StackPane id="headerPane" style="-fx-padding: 20 40 6 40;">
+            <VBox alignment="CENTER_LEFT" spacing="2" StackPane.alignment="CENTER_LEFT">
+                <HBox alignment="BASELINE_LEFT" spacing="12">
+                    <Label id="lblLogo" text="SENAI" />
+                    <Label id="lblTitulo" text="Frente de Caixa (PDV)" />
+                </HBox>
+                <Label id="lblSubtitulo" text="Processamento de Vendas e Faturamento" />
+            </VBox>
+
+            <!-- PERFIL NO CENTRO -->
+            <VBox alignment="TOP_CENTER" spacing="6" StackPane.alignment="TOP_CENTER" mouseTransparent="true">
+                <StackPane fx:id="avatarNavContainer" styleClass="nav-avatar-ring" maxWidth="64" maxHeight="64" minWidth="64" minHeight="64">
+                    <SVGPath content="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" styleClass="nav-avatar-svg" scaleX="2.0" scaleY="2.0"/>
+                </StackPane>
+                <VBox alignment="CENTER" spacing="0">
+                    <Label fx:id="lblUserName" text="Visitante" styleClass="nav-user-name" />
+                    <Label text="Logado" styleClass="nav-user-subtitle" />
+                </VBox>
+            </VBox>
+
+            <!-- DIREITA: NAVEGAÇÃO SUPERIOR -->
+            <HBox alignment="CENTER_RIGHT" StackPane.alignment="TOP_RIGHT" spacing="6" maxHeight="-Infinity" translateY="-4" translateX="12">
+                <Button fx:id="btnTheme" text="Light" onAction="#alternarTema" styleClass="theme-btn" />
+                <MenuButton fx:id="btnConfig" text="&#x2699;" id="btnConfig">
+                    <items>
+                        <MenuItem text="&#x1F4E6;  Produtos" onAction="#abrirProdutos" />
+                        <MenuItem text="&#x1F465;  Clientes" onAction="#abrirClientes" />
+                        <MenuItem text="&#x1F6D2;  Vendas / PDV" disable="true" />
+                        <SeparatorMenuItem />
+                        <MenuItem text="&#x21BA;  Deslogar" onAction="#fazerLogout" />
+                        <MenuItem fx:id="menuItemSair" text="&#x1F6AA;  Sair" onAction="#sairApp" />
+                    </items>
+                </MenuButton>
+            </HBox>
+        </StackPane>
+    </top>
+
+    <!-- CONTEÚDO CENTRAL: CARRINHO E CHECKOUT -->
+    <center>
+        <HBox id="centerPane" spacing="24" alignment="TOP_CENTER">
+            
+            <!-- ====== LADO ESQUERDO: CARRINHO ====== -->
+            <VBox id="tabelaPane" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" spacing="12">
+                
+                <!-- Busca de Produtos -->
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <Label text="Adicionar Produto:" style="-fx-font-weight: bold;" />
+                    <TextField fx:id="txtBuscaProduto" promptText="Cód Barras ou Nome e aperte Enter..." HBox.hgrow="ALWAYS" />
+                    <TextField fx:id="txtQuantidadeBase" promptText="Qtd" text="1" prefWidth="60" />
+                    <Button id="btnSalvar" text="Add" onAction="#adicionarProdutoCarrinho" />
+                </HBox>
+
+                <TableView fx:id="tabelaCarrinho" VBox.vgrow="ALWAYS">
+                    <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                    </columnResizePolicy>
+                    <placeholder>
+                        <Label text="Carrinho Vazio. Bipe um produto." />
+                    </placeholder>
+                    <columns>
+                        <TableColumn fx:id="colCodBarras" text="Cód. Barras" prefWidth="120" />
+                        <TableColumn fx:id="colNome" text="Produto" prefWidth="250" />
+                        <TableColumn fx:id="colQuantidade" text="Qtd." prefWidth="60" styleClass="col-center" />
+                        <TableColumn fx:id="colPreco" text="Preço Un." prefWidth="100" styleClass="col-right" />
+                        <TableColumn fx:id="colSubtotal" text="Subtotal" prefWidth="120" styleClass="col-right" />
+                        <TableColumn fx:id="colAcao" text="" prefWidth="60" styleClass="col-center" />
+                    </columns>
+                </TableView>
+
+                <Label text="* Dê duplo clique em um item para alterar a quantidade ou removê-lo." style="-fx-text-fill: #94A3B8; -fx-font-size: 11px;" />
+            </VBox>
+
+            <!-- ====== LADO DIREITO: CHECKOUT E PAGAMENTO ====== -->
+            <VBox id="formPane" spacing="14" prefWidth="380" minWidth="360" maxWidth="400">
+                
+                <Label id="lblFormTitle" text="Resumo da Compra" alignment="CENTER" maxWidth="1.7976931348623157E308"/>
+                
+                <!-- Cliente -->
+                <VBox spacing="4">
+                    <Label text="Cliente (Selecione um Cliente Ativo)" />
+                    <ComboBox fx:id="cmbCliente" promptText="Consumidor Final" maxWidth="1.7976931348623157E308" />
+                </VBox>
+
+                <Separator />
+
+                <!-- Totais -->
+                <VBox spacing="8" style="-fx-background-color: rgba(0,0,0,0.03); -fx-padding: 16; -fx-border-radius: 8;">
+                    <HBox alignment="CENTER_LEFT">
+                        <Label text="Subtotal:" style="-fx-font-size: 16;" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Label fx:id="lblSubtotalVal" text="R$ 0,00" style="-fx-font-size: 16;" />
+                    </HBox>
+                    <HBox alignment="CENTER_LEFT">
+                        <Label text="Desconto (%):" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="txtDesconto" prefWidth="80" text="0" alignment="CENTER_RIGHT" />
+                    </HBox>
+                    <HBox alignment="CENTER_LEFT">
+                        <Label text="TOTAL A PAGAR:" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: #10B981;" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Label fx:id="lblTotalVal" text="R$ 0,00" style="-fx-font-size: 24; -fx-font-weight: bold; -fx-text-fill: #10B981;" />
+                    </HBox>
+                </VBox>
+
+                <!-- Área de Pagamento -->
+                <VBox spacing="10">
+                    <Label text="Forma de Pagamento" style="-fx-font-weight: bold;" />
+                    <HBox spacing="8">
+                        <RadioButton fx:id="rbDinheiro" text="Dinheiro" selected="true" />
+                        <RadioButton fx:id="rbCartao" text="Cartão (C/D)" />
+                        <RadioButton fx:id="rbPix" text="PIX" />
+                    </HBox>
+                    
+                    <HBox fx:id="boxValorPago" alignment="CENTER_LEFT" spacing="10">
+                        <Label text="Valor Recebido:" />
+                        <TextField fx:id="txtValorRecebido" promptText="0.00" HBox.hgrow="ALWAYS" />
+                    </HBox>
+                    
+                    <HBox alignment="CENTER_LEFT">
+                        <Label text="Troco:" style="-fx-font-weight: bold;" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Label fx:id="lblTrocoVal" text="R$ 0,00" style="-fx-font-size: 18; -fx-font-weight: bold;" />
+                    </HBox>
+                </VBox>
+
+                <Region VBox.vgrow="ALWAYS" />
+
+                <!-- Botões Finais -->
+                <VBox spacing="10">
+                    <Button fx:id="btnFinalizar" id="btnSalvar" text="FINALIZAR VENDA" maxWidth="1.7976931348623157E308" prefHeight="50" style="-fx-font-size: 16; -fx-font-weight: bold;" onAction="#finalizarVenda" />
+                    <Button text="Cancelar Venda (Limpar Caixa)" maxWidth="1.7976931348623157E308" onAction="#limparTudo" style="-fx-background-color: transparent; -fx-border-color: #EF4444; -fx-border-radius: 6; -fx-text-fill: #EF4444;" />
+                </VBox>
+                
+            </VBox>
+        </HBox>
+    </center>
+
+</BorderPane>
